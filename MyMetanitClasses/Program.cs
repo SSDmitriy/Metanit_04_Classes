@@ -98,6 +98,4 @@ void ChangePersonByRef(ref Person p)
     Console.WriteLine("Это внутри метода ChangePerson (попытка изменить имя и возраст)");
 }
 
-
-
 //*/
