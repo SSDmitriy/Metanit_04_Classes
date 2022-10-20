@@ -102,13 +102,14 @@ void ChangePersonByRef(ref Person p)
 
 
 
-//*
+/*
 // ПРОСТРАНСТВА ИМЕН https://metanit.com/sharp/tutorial/3.25.php
 // пространство имен определяется как - namespase Name{}
 // можно внутри файла несколько пространств задать или вынести пространство в отдельный
 
 // подключаю пространство из другого файла
 using SomeNamespace;
+using System.Net.NetworkInformation;
 
 // создаю объект класса из простр имен и потом можно обратиться к его методу
 PersonInSomeNamespace bob = new PersonInSomeNamespace("bobb");
@@ -120,4 +121,31 @@ SomeNamespace.InnerNamespace.ClassInInnerNamespace inInside = new SomeNamespace.
 inInside.PrintFromInnerNamespace();
 
 
-//*/
+
+
+// подключать или отключать пространства имен можно в в файле проекта
+// по дефолту в .net6 подключено глобальное пространство имен
+// < ImplicitUsings > enable </ ImplicitUsings >
+// пример выключенного пространства имен и подключения/отключения отдельных пространств
+// в файле проекта .sln
+
+< Project Sdk = "Microsoft.NET.Sdk" >
+
+  < PropertyGroup >
+    < OutputType > Exe </ OutputType >
+    < TargetFramework > net6.0 </ TargetFramework >
+    < ImplicitUsings > disable </ ImplicitUsings > // вот здесь отключены дефолтные namespace
+    < Nullable > enable </ Nullable >
+  </ PropertyGroup >
+
+
+  < ItemGroup >
+    < Using Include = "System" /> // include подключает глобально КОНКРЕТНОЕ namespace
+    < Using Include = "System.Threading.Tasks" />
+    < Using Remove = "System.Linq" /> // remove ОТКЛЮЧАЕТ конкретный namespace
+  </ ItemGroup >
+
+
+</ Project >
+
+*/
