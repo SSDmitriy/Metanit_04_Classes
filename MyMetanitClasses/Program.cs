@@ -49,7 +49,7 @@ class Program
 // Person p = new Person() - здесь в p хранится ссылка на объект, а не значение
 // Значения хранятся в стеке (более быстро), ссылки - в heap (верней ссылка на объект может храниться
 // в стеке, но сами данные уже в куче.
-///*
+/*
 Person p = new Person { name = "Tom",  age = 33 };
 
 Console.WriteLine($"Персона до изменения: {p.name}, возраст {p.age}");
@@ -97,5 +97,27 @@ void ChangePersonByRef(ref Person p)
     p = new Person { name = "Bill", age = 45 };     // и еще раз переименовали
     Console.WriteLine("Это внутри метода ChangePerson (попытка изменить имя и возраст)");
 }
+
+*/
+
+
+
+//*
+// ПРОСТРАНСТВА ИМЕН https://metanit.com/sharp/tutorial/3.25.php
+// пространство имен определяется как - namespase Name{}
+// можно внутри файла несколько пространств задать или вынести пространство в отдельный
+
+// подключаю пространство из другого файла
+using SomeNamespace;
+
+// создаю объект класса из простр имен и потом можно обратиться к его методу
+PersonInSomeNamespace bob = new PersonInSomeNamespace("bobb");
+bob.PrintMyName();
+
+// подкл пространство внутри пространства - нужно обратиться
+// по полному имени класса, включая пространства имен
+SomeNamespace.InnerNamespace.ClassInInnerNamespace inInside = new SomeNamespace.InnerNamespace.ClassInInnerNamespace();
+inInside.PrintFromInnerNamespace();
+
 
 //*/
