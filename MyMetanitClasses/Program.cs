@@ -149,3 +149,16 @@ inInside.PrintFromInnerNamespace();
 </ Project >
 
 */
+
+
+///* библиотека классов, подключение https://metanit.com/sharp/tutorial/3.46.php
+// помещу класс Company в библиотеку классов Lib01
+using Lib01;
+
+Company acme = new Company("acme", "TazzMania, Elm st. 13", 666777666);
+
+acme.ToString();
+acme.PrintAbout();
+
+
+//*//
