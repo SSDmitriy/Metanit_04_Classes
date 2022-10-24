@@ -151,7 +151,7 @@ inInside.PrintFromInnerNamespace();
 */
 
 
-///* библиотека классов, подключение https://metanit.com/sharp/tutorial/3.46.php
+/* библиотека классов, подключение https://metanit.com/sharp/tutorial/3.46.php
 // помещу класс Company в библиотеку классов Lib01
 using Lib01;
 
@@ -161,4 +161,66 @@ acme.ToString();
 acme.PrintAbout();
 
 
-//*//
+*/
+
+///*
+// Свойства https://metanit.com/sharp/tutorial/3.4.php
+// свойства - это по сути геттеры и сеттеры (аксессоры)
+// свойства предоставляют доступ к полям класса (можно установить
+// или извлечь значение переменной в классе), при этом ДОБАВИТЬ НЕКУЮ ЛОГИКУ
+// в операцию установки или извлечения 
+
+ClassWithGetSet obj01 = new ClassWithGetSet();
+Console.WriteLine("поле класса ДО установления вручную (дефолтное значение):< "
+    + obj01.Field + " >");
+obj01.Field = "I set this field with setter";
+
+Console.WriteLine("поле класса ПОСЛЕ установки через сеттер:< " + obj01.Field + " >"); //напечатать значение поля класса через геттер .Field
+
+
+Console.WriteLine("age ДО установления (дефолтное значение):< "
+    + obj01.Age + " >");
+obj01.Age = 7914;
+
+Console.WriteLine("поле age ПОСЛЕ установки через сеттер:< " + obj01.Age + " >");
+
+public class ClassWithGetSet
+{
+    private string field; // это приватное поле
+
+    public string Field // а это СВОЙСТВО класса (начинается с заглавной буквы)
+    {
+        //геттер - возвращает значение ПРИВАТНОГО поля
+        get { return field; }
+
+        //сеттер - устанавливает значение ПРИВАТНОГО поля
+        set { field = value; }
+    }
+
+
+    //другой геттер-сеттер для другого поля Age
+    //зададим в сеттере проверку, чтобы возраст был не менее 18 и не более 65 лет
+    private int age;
+
+    public int Age
+    {
+        get
+        {
+            return age;
+        }
+
+        // в сеттер введена проверка на 18<age<65
+        set
+        {
+            if (value < 18) age = 18;
+            else if (value > 65) age = 65;
+            else age = value;
+        }
+    }
+
+
+}
+
+
+
+//*/
