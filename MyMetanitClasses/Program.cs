@@ -223,7 +223,7 @@ public class ClassWithGetSet
 
 */
 
-
+/*
 // если в классе прописано только одно свойство GET or SET
 // тогда с полем класса можно сделать только одну операцию
 // установить или прочитать
@@ -272,3 +272,77 @@ class Person
     }
 }
 
+*/
+
+
+///*
+//Перегрузка методов https://metanit.com/sharp/tutorial/3.5.php
+
+//Сигнатура - это ИМЯ метода + колчичество параметров + типы параметров
+//                              + порядок параметров + модификаторы параметров
+//например тут сигнатура Sum(int, int)
+//public int Sum(int a, int b)
+//{
+//    return a + b;
+//}
+
+Calculator calculator = new Calculator();
+
+Console.WriteLine("Вызов перегруженных методов: ");
+Console.WriteLine("5 + 3: " + calculator.Sum(5, 3));
+Console.WriteLine("5 + 3 + 2: " + calculator.Sum(5, 3, 2));
+Console.WriteLine("5 + 3 + 2 + 1: " + calculator.Sum(5, 3, 2, 1));
+Console.WriteLine();
+
+
+Overload overl = new Overload();
+int overloadedVar = 5;
+Console.WriteLine("Перегрузка по модификатору ref и без него");
+Console.WriteLine("Модификатор ref: ");overl.Increment(ref overloadedVar);
+Console.WriteLine("Без модификатора: "); overl.Increment(5);
+
+class Calculator
+{
+    public int Sum(int a, int b)
+    {
+        return a + b;
+    }
+
+    public int Sum(int a, int b, int c)
+    {
+        return a + b + c;
+    }
+
+    public int Sum(int x, int y, int z, int a)
+    {
+        return x + y + z + a;
+    }
+}
+
+
+
+class Overload
+{
+    //перегрузка по используемым модификаторам
+    public void Increment(ref int a)
+    {
+        a++;
+        Console.WriteLine(a);
+    }
+
+    public void Increment(int a)
+    {
+        a++;
+        Console.WriteLine(a);
+    }
+
+}
+
+
+
+
+
+
+
+
+//*/
