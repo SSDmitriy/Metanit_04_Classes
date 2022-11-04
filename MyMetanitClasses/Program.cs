@@ -163,7 +163,7 @@ acme.PrintAbout();
 
 */
 
-///*
+/*
 // Свойства https://metanit.com/sharp/tutorial/3.4.php
 // свойства - это по сути геттеры и сеттеры (аксессоры)
 // свойства предоставляют доступ к полям класса (можно установить
@@ -221,4 +221,54 @@ public class ClassWithGetSet
 
 }
 
-//*/
+*/
+
+
+// если в классе прописано только одно свойство GET or SET
+// тогда с полем класса можно сделать только одну операцию
+// установить или прочитать
+
+
+//класс Person со свойствами
+// name - только чтение (GET)
+// age - только запись (SET)
+Person person = new Person();
+
+//person.Name = "Bob"; //так не получится, т.к. для Person нет свойства SET
+Console.WriteLine($"Имя Person через вызов свойства GET: {person.Name}");
+
+//установить age
+//person.age = 39; //не получится, т.к. поле age - приватное
+//надо через свойство SET
+person.Age = 39;
+
+person.Print();
+
+class Person
+{
+    string name = "MrDefault";
+    int age = 1;
+
+    public string Name //только GET
+    {
+        get
+        {
+            return name;
+        }
+    }
+
+
+    public int Age // только SET
+    {
+        set
+        {
+            age = value;
+        }
+    }
+
+    public void Print()
+    {
+        Console.WriteLine($"Name is: {name}, age is: {age}");
+    }
+}
+
