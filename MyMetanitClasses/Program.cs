@@ -11,7 +11,7 @@ class Program
         // вообще ВНУТРИ МЕТОДОВ НЕЛЬЗЯ объявлять классы
         // т.е. внутри метода Main() тоже нельзя объявлять классы,
         // поэтому если Main() явно не указан, то все определения классов (типов)
-        // должны после кода инструкции (вызовов этих классов)
+        // должны быть после кода инструкции (вызовов этих классов)
         Person tom;
         tom = new Person();
 
@@ -275,7 +275,7 @@ class Person
 */
 
 
-///*
+/*
 //Перегрузка методов https://metanit.com/sharp/tutorial/3.5.php
 
 //Сигнатура - это ИМЯ метода + колчичество параметров + типы параметров
@@ -339,9 +339,55 @@ class Overload
 }
 
 
+*/
+
+
+///*
+// Статические методы, модификатор static https://metanit.com/sharp/tutorial/3.6.php
+Person bob = new(19);
+bob.Name = "Bob";
+Console.Write($"Персона №: {Person.counter}, Имя: {bob.Name}, возраст {bob.age} - "); ;
+bob.CheckAge();
+
+Person tom = new(26);
+tom.Name = "Tom";
+Console.Write($"Персона №: {Person.counter}, Имя: {tom.Name}, возраст {tom.age} - "); ;
+tom.CheckAge();
+
+//напечатать статическое свойство - надо обратиться напрямую по имени класса
+Console.WriteLine("Вохраст совершеннолетия: " + Person.adultAge);
 
 
 
+class Person
+{
+    
+    public static int adultAge = 21; //статическая переменная - возраст совершеннолетия - один для всех
+    public static int counter = 0; //статическая переменная - счетчик созданных персон
+
+    public int age;
+    string name;
+
+    public string Name { get; set; }
+
+    public Person(int age)
+    {
+        this.age = age;
+        this.name = name;
+        counter++;
+    }
+
+    public void CheckAge()
+    {
+        if (age >= adultAge) Console.WriteLine("взрослый");
+        else if (age >= 0) Console.WriteLine("ребенок");
+        else Console.WriteLine("некорректный возраст");
+    }
+
+    
+
+}
+ 
 
 
 
