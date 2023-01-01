@@ -11,7 +11,7 @@ class Program
         // вообще ВНУТРИ МЕТОДОВ НЕЛЬЗЯ объявлять классы
         // т.е. внутри метода Main() тоже нельзя объявлять классы,
         // поэтому если Main() явно не указан, то все определения классов (типов)
-        // должны после кода инструкции (вызовов этих классов)
+        // должны быть после кода инструкции (вызовов этих классов)
         Person tom;
         tom = new Person();
 
@@ -275,7 +275,7 @@ class Person
 */
 
 
-///*
+/*
 //Перегрузка методов https://metanit.com/sharp/tutorial/3.5.php
 
 //Сигнатура - это ИМЯ метода + колчичество параметров + типы параметров
@@ -339,10 +339,125 @@ class Overload
 }
 
 
+*/
+
+
+/*
+// Статические методы, модификатор static https://metanit.com/sharp/tutorial/3.6.php
+// Статическими могут быть: КЛАСС, внутри класса - ПОЛЯ, СВОЙСТВА, МЕТОДЫ и КОНСТРУКТОР
+Person bob = new(19);
+bob.Name = "Bob";
+Console.Write($"Персона №: {Person.counter}, Имя: {bob.Name}, возраст {bob.age} - "); ;
+bob.CheckAge();
+
+Person tom = new(26);
+tom.Name = "Tom";
+Console.Write($"Персона №: {Person.counter}, Имя: {tom.Name}, возраст {tom.age} - "); ;
+tom.CheckAge();
+
+//напечатать статическое свойство - надо обратиться напрямую по имени класса
+// AdultAge - сввойство (с большой буквы), adultAge - статическая переменная
+Console.WriteLine("(Статическое свойство) Возраст совершеннолетия: " + Person.AdultAge);
 
 
 
+class Person
+{
+    
+    static int adultAge = 21; //статическая переменная - возраст совершеннолетия - один для всех
+    public static int counter = 0; //статическая переменная - счетчик созданных персон
+
+    public int age;
+    string name;
+
+    public string Name { get; set; }
+
+    public static int AdultAge
+    {
+        get { return adultAge; }
+    }
+
+    public Person(int age)
+    {
+        this.age = age;
+        this.name = name;
+        counter++;
+    }
+
+    public void CheckAge()
+    {
+        if (age >= adultAge) Console.WriteLine("взрослый");
+        else if (age >= 0) Console.WriteLine("ребенок");
+        else Console.WriteLine("некорректный возраст");
+    }
+}
+ 
+
+*/
+
+
+/*
+//NuGet пакеты https://metanit.com/sharp/tutorial/3.60.php
+//
+// we are downloaded NuGet package Newtonsoft.Json
+// now we should turn on this package with "using"
+using Newtonsoft.Json;
+
+
+Console.WriteLine("Hello, this word");
+
+Person dan = new("Dan", 33);
+
+//serialasing objext "dan"
+string danInJson = JsonConvert.SerializeObject(dan);
+
+//now print serialased result
+Console.WriteLine(danInJson);
+Console.WriteLine("End of hwapp");
+
+
+class Person
+{
+    public string name;
+    public int age;
+
+    public Person(string name, int age)
+    {
+        this.name = name;
+        this.age = age;
+    }
+
+}
+
+*/
+
+
+//*/
+// Constants https://metanit.com/sharp/tutorial/3.3.php
+// CONSTANTS must initialising at moment definition (i.e. BEFORE compilation)
+// READONLY fields can initialise with declaration OR inside constructor
+
+Person dan = new Person(7, "Daniel");
+
+Console.WriteLine("Print constant: " + Person.Type); //call the constant with class name
+Console.WriteLine("Print readonly var (id): " + dan.id);
+
+
+class Person
+{
+    public const string Type = "Human"; // this is a CONSTANT
+    public readonly int id;
+    public string Name { get; set; }
+
+    public Person(int id, string name)
+    {
+        this.id = id; 
+        this.Name = name;
+    }
+
+}
 
 
 
 //*/
+
