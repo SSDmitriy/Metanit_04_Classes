@@ -344,6 +344,7 @@ class Overload
 
 ///*
 // Статические методы, модификатор static https://metanit.com/sharp/tutorial/3.6.php
+// Статическими могут быть: КЛАСС, внутри класса - ПОЛЯ, СВОЙСТВА, МЕТОДЫ и КОНСТРУКТОР
 Person bob = new(19);
 bob.Name = "Bob";
 Console.Write($"Персона №: {Person.counter}, Имя: {bob.Name}, возраст {bob.age} - "); ;
@@ -355,20 +356,26 @@ Console.Write($"Персона №: {Person.counter}, Имя: {tom.Name}, воз
 tom.CheckAge();
 
 //напечатать статическое свойство - надо обратиться напрямую по имени класса
-Console.WriteLine("Вохраст совершеннолетия: " + Person.adultAge);
+// AdultAge - сввойство (с большой буквы), adultAge - статическая переменная
+Console.WriteLine("(Статическое свойство) Возраст совершеннолетия: " + Person.AdultAge);
 
 
 
 class Person
 {
     
-    public static int adultAge = 21; //статическая переменная - возраст совершеннолетия - один для всех
+    static int adultAge = 21; //статическая переменная - возраст совершеннолетия - один для всех
     public static int counter = 0; //статическая переменная - счетчик созданных персон
 
     public int age;
     string name;
 
     public string Name { get; set; }
+
+    public static int AdultAge
+    {
+        get { return adultAge; }
+    }
 
     public Person(int age)
     {
