@@ -342,7 +342,7 @@ class Overload
 */
 
 
-///*
+/*
 // Статические методы, модификатор static https://metanit.com/sharp/tutorial/3.6.php
 // Статическими могут быть: КЛАСС, внутри класса - ПОЛЯ, СВОЙСТВА, МЕТОДЫ и КОНСТРУКТОР
 Person bob = new(19);
@@ -393,4 +393,71 @@ class Person
 }
  
 
+*/
+
+
+/*
+//NuGet пакеты https://metanit.com/sharp/tutorial/3.60.php
+//
+// we are downloaded NuGet package Newtonsoft.Json
+// now we should turn on this package with "using"
+using Newtonsoft.Json;
+
+
+Console.WriteLine("Hello, this word");
+
+Person dan = new("Dan", 33);
+
+//serialasing objext "dan"
+string danInJson = JsonConvert.SerializeObject(dan);
+
+//now print serialased result
+Console.WriteLine(danInJson);
+Console.WriteLine("End of hwapp");
+
+
+class Person
+{
+    public string name;
+    public int age;
+
+    public Person(string name, int age)
+    {
+        this.name = name;
+        this.age = age;
+    }
+
+}
+
+*/
+
+
 //*/
+// Constants https://metanit.com/sharp/tutorial/3.3.php
+// CONSTANTS must initialising at moment definition (i.e. BEFORE compilation)
+// READONLY fields can initialise with declaration OR inside constructor
+
+Person dan = new Person(7, "Daniel");
+
+Console.WriteLine("Print constant: " + Person.Type); //call the constant with class name
+Console.WriteLine("Print readonly var (id): " + dan.id);
+
+
+class Person
+{
+    public const string Type = "Human"; // this is a CONSTANT
+    public readonly int id;
+    public string Name { get; set; }
+
+    public Person(int id, string name)
+    {
+        this.id = id; 
+        this.Name = name;
+    }
+
+}
+
+
+
+//*/
+
