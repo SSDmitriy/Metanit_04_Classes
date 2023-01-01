@@ -432,7 +432,7 @@ class Person
 */
 
 
-//*/
+/*/
 // Constants https://metanit.com/sharp/tutorial/3.3.php
 // CONSTANTS must initialising at moment definition (i.e. BEFORE compilation)
 // READONLY fields can initialise with declaration OR inside constructor
@@ -457,6 +457,168 @@ class Person
 
 }
 
+*/
+
+// NULLABLE ? ?? ?. !
+//
+// "?" after type means variable can take NULL
+// this ? for static analyse before compilation
+
+#nullable enable
+using Lib01;
+///*
+string? someStr2 = null;
+
+
+#nullable disable // disable for few strings below
+PrintUpper(someStr2);
+
+#nullable restore //return nullable context in this file
+
+string? someStr = null;
+
+
+PrintUpper(someStr2!); // ! - means "I know, that here is not null, because i checked it manually in method"
+
+void PrintUpper(string s)
+{
+    if (s == null) Console.WriteLine("null");
+    else Console.WriteLine(s.ToUpper());
+}
+
+Console.WriteLine("---");
+
+//int num1 = null; - WRONG. int - it's valuable type and can't be a null
+int? num1 = null; // "int?" it's like "System.Nullable<int>"
+Console.WriteLine(num1);
+
+
+Console.WriteLine("---");
+
+//PROPERTIES "Value" and "HasValue"
+//System.Nullable<T>.Value - return value of object <T>
+//System.Nullable<T>.HasValue - return TRUE if object is not null, or return FALSE if object is null
+
+MyPrintNullable(5);
+MyPrintNullable(null);
+
+void MyPrintNullable(int? num)
+{
+    if (num.HasValue)
+    {
+        Console.WriteLine("Num is: " + num.Value);
+           }
+    else
+    {
+        Console.WriteLine("There is no any num, there is only NULL");
+    }
+}
+
+Console.WriteLine("---");
+Console.WriteLine("GetValueOrDefault");
+
+//int? num2 = null; // nullable variable
+//Console.WriteLine(num2.Value); //ERROR we can't get property "Value" from "null"
+
+//property GetValueOrDefault(x) - return value or "x" if value is null
+int? num3 = null;
+Console.WriteLine(num3.GetValueOrDefault()); //return "0" - as default for numbers
+Console.WriteLine(num3.GetValueOrDefault(42)); // return 42, because num3=null, then return default=42
+
+int? num4 = 23; //not null here
+Console.WriteLine(num4.GetValueOrDefault()); //return "23"
+Console.WriteLine(num4.GetValueOrDefault(42)); // also return "23"
+
+
+Console.WriteLine("---");
+Console.WriteLine("Null-guard checks");
+
+//null guard checks
+// operators "is", "is not"
+string someString5 = "abc";
+
+JustPrint(someString5);
+
+void JustPrint(string? s)
+{
+    if(s is not null) Console.WriteLine("Sting is not null: " + s);
+}
+
+
+Console.WriteLine("---");
+Console.WriteLine("Null-Union \"??\"");
+
+// ?? - "null union"
+// a ?? b - return "a" if a<>null
+// a ?? b - return "b" if a==null
+string? someString6 = null;
+string otherStr = someString6 ?? "someString6 has no value...";
+someString6 ??= "it was null"; // "??=" is someSrting6 = someString6 ?? "yourText". Like operators += or *=
+
+Console.WriteLine(otherStr);
+
+int? num6 = 100;
+int val6 = num6 ?? 1; //val6 = 100, because is not null
+Console.WriteLine(val6);
+
+
+
+Console.WriteLine("---");
+Console.WriteLine("Check \"if-null\" with \"?.\"");
+// ?.
+//Company comp = new Company("222-33-22");
+Person2 person2 = new Person2(null);
+Person2 persWithPhone = new Person2(new Company("222-33-22"));
+
+Console.WriteLine("Check for person2");
+PrintPhone(person2);
+Console.WriteLine("End check for person2");
+Console.WriteLine("...");
+Console.WriteLine("Check for persWithPhone");
+PrintPhone(persWithPhone);
+Console.WriteLine("End check for persWithPhone");
+
+void PrintPhone(Person2? pers)
+{
+    if (pers is not null)
+    {
+        if (pers.Company is not null)
+        {
+            if (pers.Company.Phone is not null)
+            {
+                Console.WriteLine(pers.Company.Phone);
+            }
+        }
+    }
+
+    // same check but SHORTER with ?.
+    // "?." means - if property "is not null, then call next level after dot"
+    Console.WriteLine(pers?.Company?.Phone);
+
+}
+
+
+class Person2
+{
+    public Company? Company { get; set; } // job-company - may be null
+    public Person2(Company? company)
+    {
+        Company = company;
+    }
+}
+
+class Company
+{
+    public string? Phone{ get; set; } // phone of company - may be null
+    public Company(string? phone)
+    {
+        Phone = phone;
+    }
+}
+
+
+
+// !
 
 
 //*/
