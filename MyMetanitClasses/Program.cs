@@ -390,12 +390,7 @@ class Person
         else if (age >= 0) Console.WriteLine("ребенок");
         else Console.WriteLine("некорректный возраст");
     }
-
-    
-
 }
  
-
-
 
 //*/
