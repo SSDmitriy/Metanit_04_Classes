@@ -459,6 +459,8 @@ class Person
 
 */
 
+/*
+// https://metanit.com/sharp/tutorial/3.50.php
 // NULLABLE ? ?? ?. !
 //
 // "?" after type means variable can take NULL
@@ -619,6 +621,50 @@ class Company
 
 
 // !
+
+
+*/
+
+///*
+// Псевдонимы https://metanit.com/sharp/tutorial/4.1.php
+// we can use alias for classes (types) and structures with USING and =
+
+//STATIC IMPORT
+using static System.Console;
+//STATIC IMPORT for custom type (class)
+using static myOpps;
+
+//ALIAS
+using myOwnPrinter = System.Console;
+//using myPrinter = System.Console.WriteLine(); - WRONG. WriteLine() - this a method, and can not have alias
+
+
+myOwnPrinter.WriteLine("Hello app, this is with alias"); //here "myOwnPrinter" - alias
+
+WriteLine("Hello, I'm using static import"); // here we use "WriteLine()" without full name
+
+WriteLine("Sum 5+3 with static import: " + Sum(5, 3));
+
+
+
+//my own static class (type)
+static class myOpps
+{
+    public static int Sum(int a, int b)
+    {
+        return a + b;
+    }
+
+    public static int Substract(int a, int b)
+    {
+        return a - b;
+    }
+
+    public static double Divide(double a, double b)
+    {
+        return a / b;
+    }
+}
 
 
 //*/
